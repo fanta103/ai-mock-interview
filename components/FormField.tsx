@@ -18,6 +18,7 @@ type?: 'text' | 'email' | 'password' | 'file'
 const FormField = ({ control, name, label, placeholder, type ="text" }: FormFieldProps<T>) => (
 <Controller name={name} control={control} render={({field})=>(
     <FormItem>
+
         <FormLabel className="label">{label}</FormLabel>
         <FormControl>
             <Input className="input" placeholder={placeholder} type={type} {...field} />
