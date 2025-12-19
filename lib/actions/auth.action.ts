@@ -128,7 +128,7 @@ export async function getLastestInterviews(params: GetLatestInterviewsParams): P
     const interviews = await db
         .collection('interviews')
         .orderBy('createdAt', 'desc')
-        .where('finilized', '==', true)
+        .where('finalized', '==', true)
         .where('userId', '!=', userId)
         .limit(limit)
         .get();

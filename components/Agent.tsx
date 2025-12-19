@@ -58,16 +58,15 @@ const Agent = ({userName,userId,type}:AgentProps) => {
 
     const handleCall = async () => {
         setCallStatus(CallStatus.CONNECTING);
-
         await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
-            variableValues: {
-                username: userName,
-                userid: userId,
-            }
+             variableValues: {
+                 userid: userId,
+                 username: userName
+             }
+
         });
     }
     const handleDisconnect = async () => {
-
         setCallStatus(CallStatus.FINISHED);
         vapi.stop();
     }
@@ -75,21 +74,21 @@ const Agent = ({userName,userId,type}:AgentProps) => {
     const isCallIncativeOrFinished= callStatus === CallStatus.INACTIVE || callStatus === CallStatus.FINISHED;
     return (
         <>
-        <div className="call-view">
-            <div className="card-interviewer">
-                <div className="avatar">
-                    <Image src="/ai-avatar.png" alt="vapi" width={65} height={54} className="object-cover" />
-                    {isSpeaking && <span className="animate-speak"></span>}
+            <div className="call-view">
+                <div className="card-interviewer">
+                    <div className="avatar">
+                        <Image src="/ai-avatar.png" alt="vapi" width={65} height={54} className="object-cover" />
+                        {isSpeaking && <span className="animate-speak"></span>}
+                    </div>
+                    <h3>Ai Interviewer </h3>
                 </div>
-                <h3>Ai Interviewer </h3>
-            </div>
-            <div className="card-border">
-                <div className="card-content">
-                    <Image src="/user-avatar.png" alt="user-avatar" width={540} height={540} className="rounded-full object-cover size-[120px]" />
-                    <h3>{userName}</h3>
+                <div className="card-border">
+                    <div className="card-content">
+                        <Image src="/user-avatar.png" alt="user-avatar" width={540} height={540} className="rounded-full object-cover size-[120px]" />
+                        <h3>{userName}</h3>
+                    </div>
                 </div>
             </div>
-        </div>
             {messages.length>0 && (
                 <div className="transcript-border">
                     <div className="transcript">
@@ -101,10 +100,10 @@ const Agent = ({userName,userId,type}:AgentProps) => {
             )}
             <div className="w-full flex justify-center">
                 {callStatus!= 'ACTIVE' ? (<button className="relative btn-call" onClick={handleCall}>
-                    <span className={cn('absolute animate-ping rounded-full opacity-75 ',callStatus!='CONNECTING' && 'hidden')}/>
+                        <span className={cn('absolute animate-ping rounded-full opacity-75 ',callStatus!='CONNECTING' && 'hidden')}/>
                         <span>{isCallIncativeOrFinished ? 'Call' : '. . .' }</span>
 
-                </button>
+                    </button>
                 ):(
                     <button className="btn-disconnect" onClick={handleDisconnect}>
                         End

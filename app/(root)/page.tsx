@@ -3,7 +3,6 @@ import React from 'react'
 import Image from "next/image"
 import Link from "next/link"
 import InterviewCard from "@/components/InterviewCard";
-
 import {dummyInterviews} from "@/constants";
 import {getCurrentUser, getInterviewByUserId, getLastestInterviews} from "@/lib/actions/auth.action";
 const Page = async () => {
